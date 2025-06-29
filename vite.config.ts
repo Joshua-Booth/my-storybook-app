@@ -8,12 +8,17 @@ import { fileURLToPath } from 'node:url';
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 
+// Check if we're running in Storybook context
+const isStorybook = process.env.STORYBOOK === "true" || 
+                   process.argv.some(arg => arg.includes('storybook')) ||
+                   process.env.npm_lifecycle_event?.includes('storybook');
+
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   plugins: [
     tailwindcss(), 
     // Only include reactRouter plugin when not in Storybook
-    ...(process.env.STORYBOOK !== "true" ? [reactRouter()] : []),
+    ...(isStorybook ? [] : [reactRouter()]),
     tsconfigPaths()
   ],
   test: {
