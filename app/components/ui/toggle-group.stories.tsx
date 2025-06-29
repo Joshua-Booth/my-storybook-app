@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Bold, Italic, Underline } from "lucide-react";
 
 import { ToggleGroup, ToggleGroupItem } from "~/components/ui/toggle-group";

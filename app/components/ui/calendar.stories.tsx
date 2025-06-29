@@ -1,6 +1,5 @@
 import { action } from "storybook/actions";
-// Replace nextjs-vite with the name of your framework
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { addDays } from "date-fns";
 
 import { Calendar } from "~/components/ui/calendar";

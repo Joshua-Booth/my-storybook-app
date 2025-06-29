@@ -1,6 +1,5 @@
 import { expect, userEvent } from "storybook/test";
-// Replace nextjs-vite with the name of your framework
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
   Carousel,
@@ -54,7 +53,7 @@ export const Default: Story = {};
  * Use the `basis` utility class to change the size of the carousel.
  */
 export const Size: Story = {
-  render: (args) => (
+  render: (args: any) => (
     <Carousel {...args} className="mx-12 w-full max-w-xs">
       <CarouselContent>
         {Array.from({ length: 5 }).map((_, index) => (
@@ -77,9 +76,13 @@ export const Size: Story = {
 export const ShouldNavigate: Story = {
   name: "when clicking next/previous buttons, should navigate through slides",
   tags: ["!dev", "!autodocs"],
-  play: async ({ canvas, step }) => {
+  play: async ({ canvas, step }: any) => {
     const slides = await canvas.findAllByRole("group");
     expect(slides).toHaveLength(5);
+    
+    // Wait for carousel to initialize
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
     const nextBtn = await canvas.findByRole("button", { name: /next/i });
     const prevBtn = await canvas.findByRole("button", {
       name: /previous/i,
@@ -88,12 +91,16 @@ export const ShouldNavigate: Story = {
     await step("navigate to the last slide", async () => {
       for (let i = 0; i < slides.length - 1; i++) {
         await userEvent.click(nextBtn);
+        // Small delay between clicks to allow animation/state updates
+        await new Promise(resolve => setTimeout(resolve, 50));
       }
     });
 
     await step("navigate back to the first slide", async () => {
       for (let i = slides.length - 1; i > 0; i--) {
         await userEvent.click(prevBtn);
+        // Small delay between clicks to allow animation/state updates
+        await new Promise(resolve => setTimeout(resolve, 50));
       }
     });
   },
