@@ -1,0 +1,31 @@
+# fly.toml app configuration file generated for my-storybook-app-proud-dew-3367 on 2025-06-30T12:31:57+12:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'my-storybook-app-proud-dew-3367'
+primary_region = 'syd'
+
+[build]
+
+[env]
+  PORT = "3000"
+  NODE_ENV = "production"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+# Serve static assets directly from the edge
+[[statics]]
+  guest_path = "/app/build/client"
+  url_prefix = "/assets/"
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
