@@ -5,6 +5,9 @@ import { addDays } from "date-fns";
 import { Calendar } from "~/components/ui/calendar";
 import { expect, userEvent } from "storybook/test";
 
+// Static base date for consistent Chromatic snapshots
+const STATIC_DATE = new Date("2024-06-15");
+
 /**
  * A date field component that allows users to enter and edit date.
  */
@@ -15,7 +18,7 @@ const meta = {
   argTypes: {},
   args: {
     mode: "single",
-    selected: new Date(),
+    selected: STATIC_DATE,
     onSelect: action("onDayClick"),
     className: "rounded-md border w-fit",
   },
@@ -39,7 +42,7 @@ export const Default: Story = {};
 export const Multiple: Story = {
   args: {
     min: 1,
-    selected: [new Date(), addDays(new Date(), 2), addDays(new Date(), 8)],
+    selected: [STATIC_DATE, addDays(STATIC_DATE, 2), addDays(STATIC_DATE, 8)],
     mode: "multiple",
   },
 };
@@ -50,8 +53,8 @@ export const Multiple: Story = {
 export const Range: Story = {
   args: {
     selected: {
-      from: new Date(),
-      to: addDays(new Date(), 7),
+      from: STATIC_DATE,
+      to: addDays(STATIC_DATE, 7),
     },
     mode: "range",
   },
@@ -63,10 +66,10 @@ export const Range: Story = {
 export const Disabled: Story = {
   args: {
     disabled: [
-      addDays(new Date(), 1),
-      addDays(new Date(), 2),
-      addDays(new Date(), 3),
-      addDays(new Date(), 5),
+      addDays(STATIC_DATE, 1),
+      addDays(STATIC_DATE, 2),
+      addDays(STATIC_DATE, 3),
+      addDays(STATIC_DATE, 5),
     ],
   },
 };

@@ -55,7 +55,7 @@ export const WithPopover: Story = {
               id="date"
               className="w-48 justify-between font-normal"
             >
-              {date ? date.toLocaleDateString() : "Select date"}
+              {date ? date.toLocaleDateString("en-US") : "Select date"}
               <ChevronDownIcon />
             </Button>
           </PopoverTrigger>
@@ -250,7 +250,7 @@ export const WithDateTime: Story = {
                 id="date-picker"
                 className="w-32 justify-between font-normal"
               >
-                {date ? date.toLocaleDateString() : "Select date"}
+                {date ? date.toLocaleDateString("en-US") : "Select date"}
                 <ChevronDownIcon />
               </Button>
             </PopoverTrigger>

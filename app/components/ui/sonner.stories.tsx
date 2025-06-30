@@ -25,7 +25,7 @@ const meta: Meta<typeof Toaster> = {
       <Button
         onClick={() =>
           toast("Event has been created", {
-            description: new Date().toLocaleString(),
+            description: "Tuesday, December 31, 2024 at 11:59:59 PM",
             action: {
               label: "Undo",
               onClick: action("Undo clicked"),
