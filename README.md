@@ -37,6 +37,26 @@ pnpm run build
 
 ## Deployment
 
+### Fly.io Deployment (Recommended)
+
+Deploy to Fly.io with their CLI:
+
+```bash
+# Install Fly.io CLI
+curl -L https://fly.io/install.sh | sh
+
+# Authenticate (sign up if needed)
+fly auth login
+
+# Deploy your app
+fly launch
+
+# For subsequent deployments
+fly deploy
+```
+
+Your app will be available at `https://your-app-name.fly.dev`
+
 ### Docker Deployment
 
 To build and run using Docker:
@@ -54,14 +74,13 @@ The containerized application can be deployed to any platform that supports Dock
 - Google Cloud Run
 - Azure Container Apps
 - Digital Ocean App Platform
-- Fly.io
 - Railway
 
 ### DIY Deployment
 
 If you're familiar with deploying Node applications, the built-in app server is production-ready.
 
-Make sure to deploy the output of `npm run build`
+Make sure to deploy the output of `pnpm run build`
 
 ```
 ├── package.json

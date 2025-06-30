@@ -10,8 +10,12 @@ const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(file
 
 // Check if we're running in Storybook context
 const isStorybook = process.env.STORYBOOK === "true" || 
-                   process.argv.some(arg => arg.includes('storybook')) ||
-                   process.env.npm_lifecycle_event?.includes('storybook');
+                   process.env.npm_lifecycle_event?.includes('storybook') ||
+                   process.argv.some(arg => 
+                     arg.includes('storybook/') || 
+                     arg.endsWith('storybook') ||
+                     arg.includes('@storybook/')
+                   );
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
